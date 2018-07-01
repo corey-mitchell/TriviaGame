@@ -1,8 +1,9 @@
 // initial variables
-var time = 15;
+var time = 6;
 var currentQuestion = 0;
 var correctAnswer = 0;
 var incorrectAnswer = 0;
+var timeOut = 0;
 
 // Questions and choices
 var questions = [
@@ -10,6 +11,7 @@ var questions = [
         question: "How many fingers are on your hand?",
         choices: ["1","4","3","5"],
         answer: "5",
+        image: "<img class='answerImage' src='assets/images/PH1.jpg' alt='placeholder' height='250px' width='250px'>"
     },
 
 ]
@@ -22,7 +24,7 @@ $(document).ready(function() {
 
     // Loads next question
     function nextQuestion() {
-        time = 15;
+        time = 5;
 
         $(".question").html(questions[currentQuestion].question);
 
@@ -45,10 +47,10 @@ $(document).ready(function() {
         $(".timer").html("Time Remaining: " + time + " seconds");
         clock = setInterval(countDown, 1000);
 
-        function countDown () {
+        function countDown() {
             if (time < 1) {
                 clearInterval(clock);
-                // timeOut();
+                timesUp();
             }
 
             else if (time > 0) {
@@ -59,6 +61,31 @@ $(document).ready(function() {
         }
         
     }
+
+
+    function timesUp() {
+        timeOut++;
+        $(".question").html("Uh-Oh, time ran out! Try to answer a little quicker next time.");
+        $(".timer").html("");
+        $(".button1").html("");
+        $(".button2").html("");
+        $(".button3").html("");
+        $(".button4").html("");
+        $(".answer").html("The correct answer was " + questions[currentQuestion].answer + ".");
+        $(".images").html(questions[currentQuestion].image)
+        
+    }
+
+    // function wrongChoice() {
+    //     incorrectAnswer++;
+    //     $(".question").html("Sorry, that is incorrect.");
+    //     $(".timer").emtpy();
+    //     $(".button1").empty();
+    //     $(".button2").empty();
+    //     $(".button3").empty();
+    //     $(".button4").emtpy();
+    //     $(".answer").html("The correct answer was " + questions[currentQuestion].answer + ".");   
+    // }
 
     
     // Starts the Game

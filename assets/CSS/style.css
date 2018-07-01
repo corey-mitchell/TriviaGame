@@ -4,8 +4,11 @@ body {
     background-size: cover;
 }
 
+
 /*Main Content*/
 
+
+/* Content Wrapper */
 #wrapper {
     max-width: 1140px;
     width: 100%;
@@ -19,17 +22,16 @@ body {
     
 }
 
-.slideshow-container {
-    margin: 20px;
-    margin-left: 0px;
-}
 
+/* Heading */
 .title {
     font-size: 100px;
     margin-top: 20px;
     margin-bottom: 50px;
 }
 
+
+/* Start Button */
 #start {
     margin-top: 130px;
     font-size: 50px;
@@ -49,6 +51,8 @@ body {
 
 }
 
+
+/* Choice Buttons */
 .buttons {
     font-size: 50px;
     border: 5px double #eeeeee;
@@ -67,3 +71,20 @@ body {
 
 }
 
+
+/* Answer Images */
+.answerImage {
+    margin-top: 20px;
+}
+
+
+
+/* Content seemed shifted ever so slightly to the right when in full screen so I added this so center it up a bit more */
+@media screen and (min-width: 1200px) {
+
+    .slideshow-container {
+        margin: 20px;
+        margin-left: 0px;
+    }
+    
+}
