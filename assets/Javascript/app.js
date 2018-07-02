@@ -1,15 +1,22 @@
-// initial variables
+// Initial Variables
 var time = 6;
 var currentQuestion = 0;
 var correctAnswer = 0;
 var incorrectAnswer = 0;
 var timeOut = 0;
 
-// Questions and choices
+// Questions and Choices
 var questions = [
     {
         question: "How many fingers are on your hand?",
         choices: ["1","4","3","5"],
+        answer: "5",
+        image: "<img class='answerImage' src='assets/images/PH1.jpg' alt='placeholder' height='250px' width='250px'>"
+    },
+
+    {
+        question: "How many toes are on your feet?",
+        choices: ["5","4","13","9"],
         answer: "5",
         image: "<img class='answerImage' src='assets/images/PH1.jpg' alt='placeholder' height='250px' width='250px'>"
     },
@@ -22,24 +29,38 @@ $(document).ready(function() {
     console.log("ready")
 
 
-    // Loads next question
+    // Loads Next Question
     function nextQuestion() {
         time = 5;
-
+        $(".answer").html("");
+        $(".images").html("");
         $(".question").html(questions[currentQuestion].question);
 
         timer();
         choices();
     }
 
+    function buttonClicks() {
+        if (questions[currentQuestion].choices[userChoice] === questions[currentQuestion].answer) {
+            correctChoice();
+        }
 
-    //
-    function choices() {
-        $(".button1").html("<button class='buttons'>" + questions[currentQuestion].choices[0] + "</button>")
-        $(".button2").html("<button class='buttons'>" + questions[currentQuestion].choices[1] + "</button>")
-        $(".button3").html("<button class='buttons'>" + questions[currentQuestion].choices[2] + "</button>")
-        $(".button4").html("<button class='buttons'>" + questions[currentQuestion].choices[3] + "</button>")
+        else {
+            incorrectChoice();
+        }
     }
+
+
+    // Populates the Choices 
+    function choices() {
+        $(".button1").html("<button class='buttons userChoice'>" + questions[currentQuestion].choices[0] + "</button>")
+        $(".button2").html("<button class='buttons userChoice'>" + questions[currentQuestion].choices[1] + "</button>")
+        $(".button3").html("<button class='buttons userChoice'>" + questions[currentQuestion].choices[2] + "</button>")
+        $(".button4").html("<button class='buttons userChoice'>" + questions[currentQuestion].choices[3] + "</button>")
+    }
+
+    // Activtes Choice Buttons
+    $(".userChoice").click(buttonClicks);
 
 
     // Controls Timer
@@ -48,7 +69,7 @@ $(document).ready(function() {
         clock = setInterval(countDown, 1000);
 
         function countDown() {
-            if (time < 1) {
+            if (time === 0) {
                 clearInterval(clock);
                 timesUp();
             }
@@ -63,29 +84,80 @@ $(document).ready(function() {
     }
 
 
+    // Result Screen Function
+    // function resultScreen() {}
+
+
+    // Time Out Function
     function timesUp() {
         timeOut++;
         $(".question").html("Uh-Oh, time ran out! Try to answer a little quicker next time.");
-        $(".timer").html("");
+        $(".timer").remove();
         $(".button1").html("");
         $(".button2").html("");
         $(".button3").html("");
         $(".button4").html("");
         $(".answer").html("The correct answer was " + questions[currentQuestion].answer + ".");
-        $(".images").html(questions[currentQuestion].image)
+        $(".images").html(questions[currentQuestion].image);
+
+        if (currentQuestion < questions.length){
+            currentQuestion++;
+            setInterval(nextQuestion, 1000 * 5)
+        }
+
+        // else {
+        //     setInterval(resultScreen, 1000 * 5)
+        // }
         
     }
 
-    // function wrongChoice() {
-    //     incorrectAnswer++;
-    //     $(".question").html("Sorry, that is incorrect.");
-    //     $(".timer").emtpy();
-    //     $(".button1").empty();
-    //     $(".button2").empty();
-    //     $(".button3").empty();
-    //     $(".button4").emtpy();
-    //     $(".answer").html("The correct answer was " + questions[currentQuestion].answer + ".");   
-    // }
+
+    // Incorrect Choice Function
+    function incorrectChoice() {
+        incorrectAnswer++;
+        $(".question").html("Sorry, that is incorrect.");
+        $(".timer").remove();
+        $(".button1").html("");
+        $(".button2").html("");
+        $(".button3").html("");
+        $(".button4").html("");
+        $(".answer").html("The correct answer was " + questions[currentQuestion].answer + "."); 
+        $(".images").html(questions[currentQuestion].image); 
+
+        // if(currentQuestion < questions.length){
+        //     currentQuestion++;
+        //     setInterval(nextQuestion, 1000 * 5)
+        // }
+
+        // else {
+        //     setInterval(resultScreen, 1000 * 5)
+        // }
+
+    }
+
+
+    // Correct Choice Function
+    function correctChoice() {
+        correctAnswer++;
+        $(".question").html("You are correct!!!");
+        $(".timer").remove();
+        $(".button1").html("");
+        $(".button2").html("");
+        $(".button3").html("");
+        $(".button4").html("");
+        $(".answer").html(questions[currentQuestion].answer);  
+        $(".images").html(questions[currentQuestion].image); 
+        
+        // if(currentQuestion < questions.length){
+        //     currentQuestion++;
+        //     setInterval(nextQuestion, 1000 * 5)
+        // }
+
+        // else {
+        //     setInterval(resultScreen, 1000 * 5)
+        // }
+
+    }
 
     
     // Starts the Game
