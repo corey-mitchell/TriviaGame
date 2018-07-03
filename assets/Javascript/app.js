@@ -1,8 +1,8 @@
 // Initial Variables
-var time = 6;
+var time = 15;
 var currentQuestion = 0;
-var correctAnswer = 0;
-var incorrectAnswer = 0;
+var correctGuesses = 0;
+var incorrectGuesses = 0;
 var timeOut = 0;
 
 // Questions and Choices
@@ -21,10 +21,24 @@ var questions = [
         image: "<img class='answerImage' src='assets/images/PH1.jpg' alt='placeholder' height='250px' width='250px'>"
     },
 
+    {
+        question: "What is a good next question?",
+        choices: ["6","5","3","4"],
+        answer: "5",
+        image: "<img class='answerImage' src='assets/images/PH1.jpg' alt='placeholder' height='250px' width='250px'>"
+    },
+
+    {
+        question: "Guess a number?",
+        choices: ["16","8","5","3"],
+        answer: "5",
+        image: "<img class='answerImage' src='assets/images/PH1.jpg' alt='placeholder' height='250px' width='250px'>"
+    },
+
 ]
 
 
-// Main Function
+// Ready Function
 $(document).ready(function() {
     console.log("ready")
 
@@ -35,32 +49,43 @@ $(document).ready(function() {
         $(".answer").html("");
         $(".images").html("");
         $(".question").html(questions[currentQuestion].question);
+        // For some reason the timer wouldn't clear out after question so I had to do a little work around
+        $("#timerPlacement").html("<p class='timer text-center'>Time Remaining: " + time + " seconds</p>");
 
-        timer();
+        clearInterval(nextQuestion);
+
+        // timer();
         choices();
     }
 
+
+    // Defines Button Functions
     function buttonClicks() {
-        if (questions[currentQuestion].choices[userChoice] === questions[currentQuestion].answer) {
-            correctChoice();
+        // alert("Clicked")
+        userGuess = $(this).text();
+        if (userGuess === questions[currentQuestion].answer) {
+            correctAnwer();
         }
 
         else {
-            incorrectChoice();
+            incorrectAnswer();
         }
     }
 
 
-    // Populates the Choices 
+    // Populates the Choices with Buttons
     function choices() {
-        $(".button1").html("<button class='buttons userChoice'>" + questions[currentQuestion].choices[0] + "</button>")
-        $(".button2").html("<button class='buttons userChoice'>" + questions[currentQuestion].choices[1] + "</button>")
-        $(".button3").html("<button class='buttons userChoice'>" + questions[currentQuestion].choices[2] + "</button>")
-        $(".button4").html("<button class='buttons userChoice'>" + questions[currentQuestion].choices[3] + "</button>")
+        $(".button1").html("<button class='buttons'>" + questions[currentQuestion].choices[0] + "</button>")
+        $(".button2").html("<button class='buttons'>" + questions[currentQuestion].choices[1] + "</button>")
+        $(".button3").html("<button class='buttons'>" + questions[currentQuestion].choices[2] + "</button>")
+        $(".button4").html("<button class='buttons'>" + questions[currentQuestion].choices[3] + "</button>")
     }
 
     // Activtes Choice Buttons
-    $(".userChoice").click(buttonClicks);
+    $(".button1").click(buttonClicks)
+    $(".button2").click(buttonClicks)
+    $(".button3").click(buttonClicks)
+    $(".button4").click(buttonClicks)
 
 
     // Controls Timer
@@ -85,7 +110,28 @@ $(document).ready(function() {
 
 
     // Result Screen Function
-    // function resultScreen() {}
+    function resultScreen() {
+        // alert("result screen")
+        clearInterval(resultScreen);
+        $(".question").html("Results are");
+        $(".answer").html("");
+        $(".images").html("");
+
+    }
+
+
+    // Moves to next question unless out of questions in which case it activates result screen
+    //still working on
+    function decider(){
+        if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            setInterval(nextQuestion, 1000 * 5)
+        }
+
+        else {
+            setInterval(resultScreen, 1000 * 5)
+        }
+    }
 
 
     // Time Out Function
@@ -100,21 +146,16 @@ $(document).ready(function() {
         $(".answer").html("The correct answer was " + questions[currentQuestion].answer + ".");
         $(".images").html(questions[currentQuestion].image);
 
-        if (currentQuestion < questions.length){
-            currentQuestion++;
-            setInterval(nextQuestion, 1000 * 5)
-        }
+        // clearInterval(nextQuestion);
 
-        // else {
-        //     setInterval(resultScreen, 1000 * 5)
-        // }
+        decider();
         
     }
 
 
     // Incorrect Choice Function
-    function incorrectChoice() {
-        incorrectAnswer++;
+    function incorrectAnswer() {
+        incorrectGuesses++;
         $(".question").html("Sorry, that is incorrect.");
         $(".timer").remove();
         $(".button1").html("");
@@ -124,21 +165,16 @@ $(document).ready(function() {
         $(".answer").html("The correct answer was " + questions[currentQuestion].answer + "."); 
         $(".images").html(questions[currentQuestion].image); 
 
-        // if(currentQuestion < questions.length){
-        //     currentQuestion++;
-        //     setInterval(nextQuestion, 1000 * 5)
-        // }
+        // clearInterval(nextQuestion);
 
-        // else {
-        //     setInterval(resultScreen, 1000 * 5)
-        // }
+        decider();
 
     }
 
 
     // Correct Choice Function
-    function correctChoice() {
-        correctAnswer++;
+    function correctAnwer() {
+        correctGuesses++;
         $(".question").html("You are correct!!!");
         $(".timer").remove();
         $(".button1").html("");
@@ -147,15 +183,10 @@ $(document).ready(function() {
         $(".button4").html("");
         $(".answer").html(questions[currentQuestion].answer);  
         $(".images").html(questions[currentQuestion].image); 
-        
-        // if(currentQuestion < questions.length){
-        //     currentQuestion++;
-        //     setInterval(nextQuestion, 1000 * 5)
-        // }
 
-        // else {
-        //     setInterval(resultScreen, 1000 * 5)
-        // }
+        // clearInterval(nextQuestion);
+        
+        decider();
 
     }
 
