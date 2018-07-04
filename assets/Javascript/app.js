@@ -11,31 +11,35 @@ var questions = [
         question: "How many fingers are on your hand?",
         choices: ["1","4","3","5"],
         answer: "5",
-        image: "<img class='answerImage' src='assets/images/PH1.jpg' alt='placeholder' height='250px' width='250px'>"
+        image: "<img class='answerImage' src='assets/images/PH1.jpg' alt='placeholder' height='250px' width='250px'>",
+        answered: false,
     },
 
     {
         question: "How many toes are on your feet?",
         choices: ["5","4","13","9"],
         answer: "5",
-        image: "<img class='answerImage' src='assets/images/PH1.jpg' alt='placeholder' height='250px' width='250px'>"
+        image: "<img class='answerImage' src='assets/images/PH1.jpg' alt='placeholder' height='250px' width='250px'>",
+        answered: false,
     },
 
     {
         question: "What is a good next question?",
         choices: ["6","5","3","4"],
         answer: "5",
-        image: "<img class='answerImage' src='assets/images/PH1.jpg' alt='placeholder' height='250px' width='250px'>"
+        image: "<img class='answerImage' src='assets/images/PH1.jpg' alt='placeholder' height='250px' width='250px'>",
+        answered: false,
     },
 
     {
         question: "Guess a number?",
         choices: ["16","8","5","3"],
         answer: "5",
-        image: "<img class='answerImage' src='assets/images/PH1.jpg' alt='placeholder' height='250px' width='250px'>"
+        image: "<img class='answerImage' src='assets/images/PH1.jpg' alt='placeholder' height='250px' width='250px'>",
+        answered: false,
     },
 
-]
+];
 
 
 // Ready Function
@@ -45,16 +49,17 @@ $(document).ready(function() {
 
     // Loads Next Question
     function nextQuestion() {
+        console.log("next question");
+
         time = 5;
         $(".answer").html("");
         $(".images").html("");
         $(".question").html(questions[currentQuestion].question);
+
         // For some reason the timer wouldn't clear out after question so I had to do a little work around
         $("#timerPlacement").html("<p class='timer text-center'>Time Remaining: " + time + " seconds</p>");
 
-        clearInterval(nextQuestion);
-
-        // timer();
+        timer();
         choices();
     }
 
@@ -69,19 +74,20 @@ $(document).ready(function() {
 
         else {
             incorrectAnswer();
-        }
+        };
     }
 
 
     // Populates the Choices with Buttons
     function choices() {
-        $(".button1").html("<button class='buttons'>" + questions[currentQuestion].choices[0] + "</button>")
-        $(".button2").html("<button class='buttons'>" + questions[currentQuestion].choices[1] + "</button>")
-        $(".button3").html("<button class='buttons'>" + questions[currentQuestion].choices[2] + "</button>")
-        $(".button4").html("<button class='buttons'>" + questions[currentQuestion].choices[3] + "</button>")
+        $(".button1").html("<button class='buttons'>" + questions[currentQuestion].choices[0] + "</button>");
+        $(".button2").html("<button class='buttons'>" + questions[currentQuestion].choices[1] + "</button>");
+        $(".button3").html("<button class='buttons'>" + questions[currentQuestion].choices[2] + "</button>");
+        $(".button4").html("<button class='buttons'>" + questions[currentQuestion].choices[3] + "</button>");
     }
 
     // Activtes Choice Buttons
+    console.log("Button Clicked")
     $(".button1").click(buttonClicks)
     $(".button2").click(buttonClicks)
     $(".button3").click(buttonClicks)
@@ -101,7 +107,7 @@ $(document).ready(function() {
 
             else if (time > 0) {
                 time--;
-            }
+            };
 
             $(".timer").html("Time Remaining: " + time + " seconds");
         }
@@ -111,8 +117,7 @@ $(document).ready(function() {
 
     // Result Screen Function
     function resultScreen() {
-        // alert("result screen")
-        clearInterval(resultScreen);
+        console.log("Results");
         $(".question").html("Results are");
         $(".answer").html("");
         $(".images").html("");
@@ -121,21 +126,21 @@ $(document).ready(function() {
 
 
     // Moves to next question unless out of questions in which case it activates result screen
-    //still working on
     function decider(){
         if (currentQuestion < questions.length - 1) {
             currentQuestion++;
-            setInterval(nextQuestion, 1000 * 5)
+            setTimeout(nextQuestion, 1000 * 5);
         }
 
-        else {
-            setInterval(resultScreen, 1000 * 5)
+        else if (questions[3].answered = true){
+            setTimeout(resultScreen, 1000 * 5);
         }
     }
 
 
     // Time Out Function
     function timesUp() {
+        console.log("Times Up!");
         timeOut++;
         $(".question").html("Uh-Oh, time ran out! Try to answer a little quicker next time.");
         $(".timer").remove();
@@ -146,7 +151,7 @@ $(document).ready(function() {
         $(".answer").html("The correct answer was " + questions[currentQuestion].answer + ".");
         $(".images").html(questions[currentQuestion].image);
 
-        // clearInterval(nextQuestion);
+        questions[currentQuestion].answered = true;
 
         decider();
         
@@ -155,6 +160,8 @@ $(document).ready(function() {
 
     // Incorrect Choice Function
     function incorrectAnswer() {
+        console.log("Incorrect Choice");
+
         incorrectGuesses++;
         $(".question").html("Sorry, that is incorrect.");
         $(".timer").remove();
@@ -165,7 +172,7 @@ $(document).ready(function() {
         $(".answer").html("The correct answer was " + questions[currentQuestion].answer + "."); 
         $(".images").html(questions[currentQuestion].image); 
 
-        // clearInterval(nextQuestion);
+        questions[currentQuestion].answered = true;
 
         decider();
 
@@ -174,6 +181,7 @@ $(document).ready(function() {
 
     // Correct Choice Function
     function correctAnwer() {
+        console.log("Correct Choice");
         correctGuesses++;
         $(".question").html("You are correct!!!");
         $(".timer").remove();
@@ -184,7 +192,7 @@ $(document).ready(function() {
         $(".answer").html(questions[currentQuestion].answer);  
         $(".images").html(questions[currentQuestion].image); 
 
-        // clearInterval(nextQuestion);
+        questions[currentQuestion].answered = true;
         
         decider();
 
@@ -193,8 +201,8 @@ $(document).ready(function() {
     
     // Starts the Game
     function startGame() {
-        $(".startDiv").remove()
-        nextQuestion()
+        $(".startDiv").remove();
+        nextQuestion();
     }
 
     // Activates Start Button
