@@ -3,6 +3,11 @@
     <head>
         <title>Trivia Game</title>
 
+        <!-- <link href="https://media.giphy.com/media/iHmodiTc8t0BO/giphy.gif"> -->
+
+        <!-- Font Elements -->
+        <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Knewave|Permanent+Marker" rel="stylesheet">
+
         <!-- CSS Elements -->
         <link rel="stylesheet" href="assets/CSS/reset.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
@@ -21,7 +26,7 @@
 
                 <!-- Heading -->
                 <div class="row">
-                    <h1 class="col-lg-12 text-center title">Trivia Game!</h1>
+                    <h1 class="col-lg-12 text-center title">Anime Trivia Game!</h1>
                 </div>
 
                 <!-- Content -->
@@ -30,23 +35,26 @@
                         <h2 class="col-lg-12 text-center"><button class="buttons" id="start">Start!</button></h2>
                     </div>
 
-                    <div id="newContent">
+                    <div>
+                        <!-- Where timer will display -->
+                        <div id="timerPlacement"></div>
+                        
                         <!-- Where text will display -->
                         <h2 class="question text-center"></h2>
-
-                        <!-- Where timer will display -->
-                        <!-- <p class="timer text-center"></p> -->
-                        <div id="timerPlacement"></div>
+                        <div id="question-message"></div>
+                        <div id="result-screen"></div>
 
                         <!-- Where buttons will display -->
                         <h2 class="col-lg-12 text-center button1"></h2>
                         <h2 class="col-lg-12 text-center button2"></h2>
                         <h2 class="col-lg-12 text-center button3"></h2>
                         <h2 class="col-lg-12 text-center button4"></h2>
+                        
+                        <h2 class="resultButton text-center"></h2>
 
                         <!-- Where images and answers will display -->
-                        <h2 class="answer text-center"></h2>
                         <div class="images text-center"></div>
+                        <h2 class="bottomText text-center"></h2>
                         
                     </div>
                 </div>

@@ -18,22 +18,72 @@ body {
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-    background-color: #eeeeee;
+    background-color: #7777;
     
 }
 
 
 /* Heading */
 .title {
+    color: #eeeeee;
+    font-family: 'Knewave', cursive;
     font-size: 100px;
-    margin-top: 20px;
-    margin-bottom: 50px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-shadow: 5px 5px black;
 }
+
+
+/* Questions/ Correct and Incorrect Messages*/
+.question {
+    color: #eeeeee;
+    font-family: 'Permanent Marker', cursive;
+    text-shadow: 3px 3px black;
+}
+
+.question-message {
+    color: #eeeeee;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 30px;
+    text-shadow: 3px 3px black;
+}
+
+
+/* Results Screen Div */
+.results {
+    color: #eeeeee;
+    font-family: 'Gloria Hallelujah', cursive;
+    margin-top: 30px;
+    text-shadow: 3px 3px black;
+}
+
+
+/* Timer */
+#timerPlacement {
+    color: #eeeeee;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 20px;
+    text-shadow: 3px 3px black;
+}
+
+
+/* Where Correct Answer is Displayed */
+.bottomText {
+    color: #eeeeee;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 50px;
+    margin-top: 20px;
+    text-shadow: 3px 3px black;
+}
+
+
+/* Buttons */
 
 
 /* Start Button */
 #start {
-    margin-top: 130px;
+    font-family: 'Permanent Marker', cursive;
+    margin-top: 140px;
     font-size: 50px;
     border: 5px double #eeeeee;
     padding: 14px 100px;
@@ -54,15 +104,23 @@ body {
 
 /* Choice Buttons */
 .buttons {
-    font-size: 50px;
+    max-width: 550px;
+    width: 100%;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 35px;
     border: 5px double #eeeeee;
     padding: 10px 150px;
-    background-color: #eeeeee;
+    background-color: #7777;
+    /* color: #eeeeee;
+    text-shadow: 3px 3px black; */
 }
 
 .buttons:hover {
     background-color: #7777;
     color: #eeeeee;
+    text-shadow: 3px 3px black;
+    border: 5px double #eeeeee;
+    margin: 5px;
 }
 
 .buttons:active {
@@ -72,10 +130,23 @@ body {
 }
 
 
-/* Answer Images */
-.answerImage {
-    margin-top: 20px;
+/* Restart Button */
+#restart-button{
+    font-family: 'Permanent Marker', cursive;
+    font-size: 50px;
+    margin-top: 50px;
+    border: 5px double #eeeeee;
+    padding: 10px 150px;
+    background-color: #eeeeee;
 }
+
+#restart-button:hover {
+    background-color: #7777;
+    color: #eeeeee;
+}
+
+
+/* Media Queries */
 
 
 /* Extends wrapper for smaller screens  */
@@ -90,9 +161,15 @@ body {
 @media screen and (max-width: 960px) {
 
     #wrapper {
-        height: 850px;
+        height: 950px;
     }
     
+}
+
+@media screen and (max-width: 481px){
+    #wrapper{
+        width: 500px;
+    }
 }
 
 /* Content seemed shifted ever so slightly to the right when in full screen so I added this so center it up a bit more */
