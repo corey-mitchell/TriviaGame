@@ -1,0 +1,168 @@
+// Loads Next Question
+    // function nextQuestion() 
+        console.log("next question");
+
+        time = 15;
+        $(".answer").html("");
+        $(".images").html("");
+        $(".senpaiSays").html("");
+        $(".question").html(questions[currentQuestion].question);
+
+        // For some reason the timer wouldn't clear out after question so I had to do a little work around
+        $("#timerPlacement").html("<p class='timer text-center'>Time Remaining: " + time + " seconds</p>");
+
+        timer();
+        choices();
+    }
+
+    // Activates Restart Button
+    $(document).on('click', '#restart-button', startGame);
+
+    // Result Screen Function
+    function resultScreen() {
+        console.log("Results");
+
+        $(".question").html("Well done! Your score: ");
+        $(".answer").html("");
+        $(".images").html("");
+        $("#result-screen").prepend(`<h2 class='results'>Answered Correctly: ${correctGuesses}</h2>
+        <h2 class='results'>Answered Incorrectly: ${incorrectGuesses}</h2>
+        <h2 class='results'>Time Outs: ${timeOut}</h2>`)
+        $(".resultButton").html("<button id='restart-button'>Restart</button>")
+        $(".senpaiSays").html("");
+    }
+
+
+    // 'Decides' if it should move to next question or to result screen if all questions are answered
+    // Also clears extra text off screen
+    function decider(){
+        if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            setTimeout(nextQuestion, 1000 * 8);
+        }
+
+        else if (questions[7].answered = true){
+            setTimeout(resultScreen, 1000 * 8);
+        }
+
+        $(".timer").remove();
+        $(".button1").text("");
+        $(".button2").html("");
+        $(".button3").html("");
+        $(".button4").html("");
+    }
+
+
+    // Time Out Function
+    function timesUp() {
+        console.log("Times Up!");
+
+        timeOut++;
+        $(".senpaiSays").html("Senpai Says: " + timesUpMessages[Math.floor(timesUpMessages.length * Math.random())]);
+        $(".question").html("The correct answer was <strong id='answer-color'><u>" + questions[currentQuestion].answer + ".</u></strong>");
+        $(".images").html(questions[currentQuestion].timeOutImage);
+
+        questions[currentQuestion].answered = true;
+
+        decider();       
+    }
+
+
+    // Incorrect Choice Function
+    function incorrectAnswer() {
+        console.log("Incorrect Choice");
+
+        incorrectGuesses++;
+        $(".senpaiSays").html("Senpai Says: " + incorrectMessages[Math.floor(incorrectMessages.length * Math.random())]);
+        $(".question").html("That is incorrect. The correct answer was <strong id='answer-color'><u>" + questions[currentQuestion].answer + "</u>. </strong>"); 
+        $(".images").html(questions[currentQuestion].incorrectImage); 
+
+        questions[currentQuestion].answered = true;
+
+        decider();
+    }
+
+
+    // Correct Choice Function
+    function correctAnwer() {
+        console.log("Correct Choice");
+
+        correctGuesses++;
+        $(".senpaiSays").html("Senpai Says: " + correctMessages[Math.floor(correctMessages.length * Math.random())]);
+        $(".question").html("<strong id='answer-color'><u>" + questions[currentQuestion].answer + "</u></strong> was correct!");  
+        $(".images").html(questions[currentQuestion].correctImage); 
+
+        questions[currentQuestion].answered = true;
+        
+        decider();
+    }
+
+
+    // Controls Timer
+    function timer() {
+        $(".timer").html("Time Remaining: " + time + " seconds");
+
+        clock = setInterval(countDown, 1000);
+
+        function countDown() {
+            if (time === 0) {
+                clearInterval(clock);
+                timesUp();
+            }
+
+            else if (time > 0) {
+                time--;
+            }
+
+            $(".timer").html("Time Remaining: " + time + " seconds");
+        }    
+    }
+
+
+    // Defines Choice Button Functions
+    function buttonClicks() {
+       console.log("Button Clicked")
+
+       userGuess = $(this).text();
+        if (userGuess === questions[currentQuestion].answer) {
+           clearInterval(clock);
+           correctAnwer();
+        }
+
+        else {
+           clearInterval(clock);
+           incorrectAnswer();
+        };
+    }
+
+    // Activates Choice Buttons
+    $(document).on('click', '.options', buttonClicks);
+
+    // Populates the Buttons with Choices
+    function choices() {
+        $(".button1").html("<button class='buttons options'>" + questions[currentQuestion].choices[0] + "</button>");
+        $(".button2").html("<button class='buttons options'>" + questions[currentQuestion].choices[1] + "</button>");
+        $(".button3").html("<button class='buttons options'>" + questions[currentQuestion].choices[2] + "</button>");
+        $(".button4").html("<button class='buttons options'>" + questions[currentQuestion].choices[3] + "</button>");
+    }
+
+    
+    // Starts the Game
+    function startGame() {
+        currentQuestion = 0;
+        correctGuesses = 0;
+        incorrectGuesses = 0;
+        timeOut = 0;
+
+        $(".startDiv").remove();
+        $("#result-screen").html("");
+        $(".resultButton").html("");
+        nextQuestion();
+    }
+
+    // Activates Start Button
+    $("#start").click(startGame);
+
+
+    // Randomly Generates Bottom Text Every Time the Page Loads
+    $(".senpaiSays").html("Senpai Says: " + startUPMessages[Math.floor(startUPMessages.length * Math.random())]);

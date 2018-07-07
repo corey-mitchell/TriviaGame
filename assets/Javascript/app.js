@@ -38,7 +38,7 @@ var questions = [
         choices: ["Fooly Cooly","Dragon Ball Z","Cowboy Bebop","Dragon Ball"],
         answer: "Dragon Ball Z",
         correctImage: "<h2 class='question-message'>Yea... Take that comic book dummies!</h2><img class='answerImage' src='https://media.giphy.com/media/YG90C8Fg3td16/giphy.gif' alt='Vegeta beats Super Heros GIF' height='250px' width='250px'>",
-        incorrectImage: "<h2 class='question-message'>Vegeta doesn't seem to approve of your lack of knowlege. You may wanna back away... Perhaps a planet or two...</h2><img class='answerImage' src='https://media.giphy.com/media/84CRvhy2DJlwA/giphy.gif' alt='Angry Vegeta GIF' height='250px' width='250px'>",
+        incorrectImage: "<h2 class='question-message'>Vegeta doesn't seem to approve your lack of knowlege. You may wanna back away... Perhaps a planet or two...</h2><img class='answerImage' src='https://media.giphy.com/media/84CRvhy2DJlwA/giphy.gif' alt='Angry Vegeta GIF' height='250px' width='250px'>",
         timeOutImage: "<h2 class='question-message'>You can't get it if you don't try.</h2><img class='answerImage' src='https://media.giphy.com/media/1S5zDKW1VFAUU/giphy.gif' alt='Goku holding back Vegeta GIF' height='250px' width='250px'>",
         answered: false,
     },
@@ -69,7 +69,7 @@ var questions = [
         choices: ["Spirited Away","Ponyo","Princess Mononoke","Castle in the Sky"],
         answer: "Spirited Away",
         correctImage: "<h2 class='question-message'>Such a good movie! But wasn't it so much more depressing than you thought it was as a kid?</h2><img class='answerImage' src='https://media.giphy.com/media/3oz8xw3LmrW1XS9iQE/giphy.gif' alt='Spirited Away Train GIF' height='250px' width='250px'>",
-        incorrectImage: "<h2 class='question-message'>You probably shouldn't take the gold. But hey, I'm not gonna tell you how to live... Or Die...</h2><img class='answerImage' src='https://media.giphy.com/media/l3ZrVw8NkxIly/giphy.gif' alt='No-Face GIF' height='250px' width='250px'>",
+        incorrectImage: "<h2 class='question-message'>You probably shouldn't take the gold.</h2><img class='answerImage' src='https://media.giphy.com/media/l3ZrVw8NkxIly/giphy.gif' alt='No-Face GIF' height='250px' width='250px'>",
         timeOutImage: "<h2 class='question-message'>Don't hurt yourself now...</h2><img class='answerImage' src='https://media.giphy.com/media/12Yyb0SJv6C55C/giphy.gif' alt='Spirited Away Can't Remember GIF' height='250px' width='250px'>",
         answered: false,
     },
@@ -85,12 +85,12 @@ var questions = [
     },
 
     {
-        question: "Anime is, in fact, an abbreviated pronunciation of Animation in Japan. It began in ____ by Japanese artists Shimokawa Oten, Jun'ichi Kouchi and Seitaro Kitayama.",
+        question: "Anime is an abbreviated pronunciation of Animation in Japan. It began in ____ by Japanese artists.",
         choices: ["1865","1917","1919","1907"],
         answer: "1917",
         correctImage: "<h2 class='question-message'>These hipsters don't know what real anime is. But you're clearly different.</h2><img class='answerImage' src='https://media.giphy.com/media/tjflzbCmRA5Py/giphy.gif' alt='DBZ Trunks Wii GIF' height='250px' width='250px'>",
-        incorrectImage: "<h2 class='question-message'></h2><img class='answerImage' src='https://media.giphy.com/media/tjflzbCmRA5Py/giphy.gif' alt='Sazae-san Suprised Face GIF' height='250px' width='250px'>",
-        timeOutImage: "<h2 class='question-message'></h2><img class='answerImage' src='https://media.giphy.com/media/tjflzbCmRA5Py/giphy.gif' alt='Mr. Krabs Meme GIF' height='250px' width='250px'>",
+        incorrectImage: "<h2 class='question-message'>The original artists were; Shimokawa Oten, Jun'ichi Kouchi and Seitaro Kitayama</h2><img class='answerImage' src='https://media.giphy.com/media/tjflzbCmRA5Py/giphy.gif' alt='Sazae-san Suprised Face GIF' height='250px' width='250px'>",
+        timeOutImage: "<h2 class='question-message'>The original artists were; Shimokawa Oten, Jun'ichi Kouchi and Seitaro Kitayama</h2><img class='answerImage' src='https://media.giphy.com/media/tjflzbCmRA5Py/giphy.gif' alt='Mr. Krabs Meme GIF' height='250px' width='250px'>",
         answered: false,
     },
 
@@ -103,48 +103,36 @@ var timesUpMessages = ["Time's up!", "Answer Faster!", "Watch the time!", "Googl
 var startUPMessages = ["Man who stand on toilet, high on pot.", "Never play leapfrog with a unicorn.", "A donut without a hole is just a Danish.", "Your toast must ALWAYS land butter-side up.", "A pipe gives a wise man time to think and a fool something to stick in his mouth."];
 
 
+// Just a heads up, if you're a person who prefers to read things as they happen, then you may want to start from the bottom and read up.
+// I don't really know how it happened, but I sort of wrote the code backwards
+
+
 // Ready Function
 $(document).ready(function() {
     console.log("ready")
 
+    // Randomly Generates Bottom Text Every Time the Page Loads
+    $(".senpaiSays").html("Senpai Says: " + startUPMessages[Math.floor(startUPMessages.length * Math.random())]);
 
-    // Loads Next Question
-    function nextQuestion() {
-        console.log("next question");
 
-        time = 15;
-        $(".answer").html("");
-        $(".images").html("");
-        $(".question").html(questions[currentQuestion].question);
-        $(".bottomText").html("");
+    // Activates Start Button
+    $("#start").click(startGame);
 
-        // $("#question-message").remove();
+    // Starts the Game
+    function startGame() {
+        currentQuestion = 0;
+        correctGuesses = 0;
+        incorrectGuesses = 0;
+        timeOut = 0;
 
-        // For some reason the timer wouldn't clear out after question so I had to do a little work around
-        $("#timerPlacement").html("<p class='timer text-center'>Time Remaining: " + time + " seconds</p>");
-
-        timer();
-        choices();
+        $(".startDiv").remove();
+        $("#result-screen").html("");
+        $(".resultButton").html("");
+        nextQuestion();
     }
 
 
-    // Defines Button Functions
-    function buttonClicks() {
-        console.log("Button Clicked")
-
-        userGuess = $(this).text();
-        if (userGuess === questions[currentQuestion].answer) {
-            clearInterval(clock);
-            correctAnwer();
-        }
-
-        else {
-            clearInterval(clock);
-            incorrectAnswer();
-        };
-    }
-
-    // Populates the Choices with Buttons
+    // Populates the Buttons with Choices
     function choices() {
         $(".button1").html("<button class='buttons options'>" + questions[currentQuestion].choices[0] + "</button>");
         $(".button2").html("<button class='buttons options'>" + questions[currentQuestion].choices[1] + "</button>");
@@ -155,6 +143,21 @@ $(document).ready(function() {
     // Activates Choice Buttons
     $(document).on('click', '.options', buttonClicks);
 
+    // Defines Choice Button Functions
+    function buttonClicks() {
+        console.log("Button Clicked")
+ 
+        userGuess = $(this).text();
+         if (userGuess === questions[currentQuestion].answer) {
+            clearInterval(clock);
+            correctAnwer();
+         }
+ 
+         else {
+            clearInterval(clock);
+            incorrectAnswer();
+         };
+    }
 
 
     // Controls Timer
@@ -178,27 +181,52 @@ $(document).ready(function() {
     }
 
 
-    // Result Screen Function
-    function resultScreen() {
-        console.log("Results");
+    // Correct Choice Function
+    function correctAnwer() {
+        console.log("Correct Choice");
 
-        $(".question").html("Well done! Your score: ");
-        $(".answer").html("");
-        $(".images").html("");
-        $("#result-screen").prepend(`<h2 class='results'>Answered Correctly: ${correctGuesses}</h2>
-        <h2 class='results'>Answered Incorrectly: ${incorrectGuesses}</h2>
-        <h2 class='results'>Time Outs: ${timeOut}</h2>`)
-        $(".resultButton").html("<button id='restart-button'>Restart</button>")
-        $(".bottomText").html("");
+        correctGuesses++;
+        $(".senpaiSays").html("Senpai Says: " + correctMessages[Math.floor(correctMessages.length * Math.random())]);
+        $(".question").html("<strong id='answer-color'><u>" + questions[currentQuestion].answer + "</u></strong> was correct!");  
+        $(".images").html(questions[currentQuestion].correctImage); 
 
-        // $("#question-message").remove();
+        questions[currentQuestion].answered = true;
+        
+        decider();
     }
 
-    // Activates Restart Button
-    $(document).on('click', '#restart-button', startGame);
+
+    // Incorrect Choice Function
+    function incorrectAnswer() {
+        console.log("Incorrect Choice");
+
+        incorrectGuesses++;
+        $(".senpaiSays").html("Senpai Says: " + incorrectMessages[Math.floor(incorrectMessages.length * Math.random())]);
+        $(".question").html("That is incorrect. The correct answer was <strong id='answer-color'><u>" + questions[currentQuestion].answer + "</u>. </strong>"); 
+        $(".images").html(questions[currentQuestion].incorrectImage); 
+
+        questions[currentQuestion].answered = true;
+
+        decider();
+    }
 
 
-    // Moves to next question unless out of questions in which case it activates result screen
+    // Time Out Function
+    function timesUp() {
+        console.log("Times Up!");
+
+        timeOut++;
+        $(".senpaiSays").html("Senpai Says: " + timesUpMessages[Math.floor(timesUpMessages.length * Math.random())]);
+        $(".question").html("The correct answer was <strong id='answer-color'><u>" + questions[currentQuestion].answer + ".</u></strong>");
+        $(".images").html(questions[currentQuestion].timeOutImage);
+
+        questions[currentQuestion].answered = true;
+
+        decider();       
+    }
+
+
+    // 'Decides' if it should move to next question or to result screen if all questions are answered
     // Also clears extra text off screen
     function decider(){
         if (currentQuestion < questions.length - 1) {
@@ -206,7 +234,7 @@ $(document).ready(function() {
             setTimeout(nextQuestion, 1000 * 8);
         }
 
-        else if (questions[3].answered = true){
+        else if (questions[7].answered = true){
             setTimeout(resultScreen, 1000 * 8);
         }
 
@@ -218,74 +246,38 @@ $(document).ready(function() {
     }
 
 
-    // Time Out Function
-    function timesUp() {
-        console.log("Times Up!");
+    // Result Screen Function
+    function resultScreen() {
+        console.log("Results");
 
-        timeOut++;
-        $(".bottomText").html("Senpai Says: " + timesUpMessages[Math.floor(timesUpMessages.length * Math.random())]);
-        $(".question").html("The correct answer was <strong id='answer-color'><u>" + questions[currentQuestion].answer + ".</u></strong>");
-        $(".images").html(questions[currentQuestion].timeOutImage);
-
-        questions[currentQuestion].answered = true;
-
-        decider();       
+        $(".question").html("Well done! Your score: ");
+        $(".answer").html("");
+        $(".images").html("");
+        $("#result-screen").prepend(`<h2 class='results'>Answered Correctly: ${correctGuesses}</h2>
+        <h2 class='results'>Answered Incorrectly: ${incorrectGuesses}</h2>
+        <h2 class='results'>Time Outs: ${timeOut}</h2>`)
+        $(".resultButton").html("<button id='restart-button'>Restart</button>")
+        $(".senpaiSays").html("");
     }
 
+    // Activates Restart Button
+    $(document).on('click', '#restart-button', startGame);
 
-    // Incorrect Choice Function
-    function incorrectAnswer() {
-        console.log("Incorrect Choice");
 
-        incorrectGuesses++;
-        $(".bottomText").html("Senpai Says: " + incorrectMessages[Math.floor(incorrectMessages.length * Math.random())]);
-        $(".question").html("The correct answer was <strong id='answer-color'><u>" + questions[currentQuestion].answer + "</u>. </strong>"); 
-        $(".images").html(questions[currentQuestion].incorrectImage); 
+    function nextQuestion() {
+        console.log("next question");
 
-        questions[currentQuestion].answered = true;
+        time = 15;
+        $(".answer").html("");
+        $(".images").html("");
+        $(".senpaiSays").html("");
+        $(".question").html(questions[currentQuestion].question);
 
-        // $("#question-message").html("<h2>" + questions[currenctQuestion].correctMessage + "</h2>");
+        // For some reason the timer wouldn't clear out after question so I had to do a little work around
+        $("#timerPlacement").html("<p class='timer text-center'>Time Remaining: " + time + " seconds</p>");
 
-        decider();
+        timer();
+        choices();
     }
-
-
-    // Correct Choice Function
-    function correctAnwer() {
-        console.log("Correct Choice");
-
-        correctGuesses++;
-        $(".bottomText").html("Senpai Says: " + correctMessages[Math.floor(correctMessages.length * Math.random())]);
-        $(".question").html("<strong id='answer-color'><u>" + questions[currentQuestion].answer + "</u></strong> was correct!");  
-        $(".images").html(questions[currentQuestion].correctImage); 
-
-        questions[currentQuestion].answered = true;
-
-        // $("#question-message").html("<h2>" + questions[currenctQuestion].correctMessage + "</h2>");
-        
-        decider();
-    }
-
-    // $(".bottomText").html("Senpai Says: " + startUPMessages[Math.floor(Math.startUPMessages.length * Math.random())]);
     
-    // Starts the Game
-    function startGame() {
-        currentQuestion = 0;
-        correctGuesses = 0;
-        incorrectGuesses = 0;
-        timeOut = 0;
-
-        $(".startDiv").remove();
-        $("#result-screen").html("");
-        $(".resultButton").html("");
-        nextQuestion();
-    }
-
-    // Activates Start Button
-    $("#start").click(startGame);
-
-
-    // Randomly Generates Bottom Text Every Time the Page Loads
-    $(".bottomText").html("Senpai Says: " + startUPMessages[Math.floor(startUPMessages.length * Math.random())]);
-
 });
