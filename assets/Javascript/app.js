@@ -14,8 +14,9 @@ var questions = [
         choices: ["7","4","8","5"],
         answer: "5",
         // Displays correct/incorrect image with corresponding messages
-        correctImage: "<h2 class='question-message'>Have you seen the new episode of Boruto?</h2><img class='answerImage' src='https://media.giphy.com/media/l49JHOl3OFL6c6u1W/giphy.gif' height='250px' width='250px'>",
-        incorrectImage: "<h2 class='question-message'>We don't talk about Harem or Reverse Harem you weirdo...</h2><img class='answerImage' src='https://media.giphy.com/media/iHmodiTc8t0BO/giphy.gif' alt='placeholder' height='250px' width='250px'>",
+        correctImage: "<h2 class='question-message'>Shonen seems to be the most ubiquitous in America.</h2><img class='answerImage' src='https://media.giphy.com/media/NDYQkBC3C1aog/giphy.gif' alt='Naruto GIF' height='250px' width='250px'>",
+        incorrectImage: "<h2 class='question-message'>We don't talk about Harem or Reverse Harem you weirdo...</h2><img class='answerImage' src='https://media.giphy.com/media/iHmodiTc8t0BO/giphy.gif' alt='Missed Plot GIF' height='250px' width='250px'>",
+        timeOutImage: "<h2 class='question-message'>You seem distracted.</h2><img class='answerImage' src='https://media.giphy.com/media/NDYQkBC3C1aog/giphy.gif' alt='Naruto GIF' height='250px' width='250px'>",
         // Boolean to help determine if a question was answered
         answered: false,
 
@@ -23,20 +24,22 @@ var questions = [
     },
 
     {
-        question: "Most animes are based off comic-book style series called ____ .",
+        question: "While 'anime' refers to animation, the term '_____' refers to comics and cartooning. ",
         choices: ["Shonen","Manga","Comicon","Cartoon"],
         answer: "Manga",
-        correctImage: "<h2 class='question-message'>They're fun but you can't get action like this on paper!</h2><img class='answerImage' src='https://media.giphy.com/media/q0mt3liFrHZ3q/giphy.gif' alt='placeholder' height='250px' width='250px'>",
-        incorrectImage: "<h2 class='question-message'>Yea, that but Japanese, I guess...</h2><img class='answerImage' src='https://media.giphy.com/media/adh7vQfwU52AE/giphy.gif' alt='placeholder' height='250px' width='250px'>",
+        correctImage: "<h2 class='question-message'>They're fun but you can't get action like this on paper!</h2><img class='answerImage' src='https://media.giphy.com/media/q0mt3liFrHZ3q/giphy.gif' alt='Naruto GIF 2' height='250px' width='250px'>",
+        incorrectImage: "<h2 class='question-message'>Yea, that but Japanese, I guess...</h2><img class='answerImage' src='https://media.giphy.com/media/PWIwU7wH9Y7Bu/giphy.gif' alt='Slammed Head GIF' height='250px' width='250px'>",
+        timeOutImage: "<h2 class='question-message'>You don't need to be so nervous. ^__^</h2><img class='answerImage' src='https://media.giphy.com/media/12nMEydAAgCxYA/giphy.gif' alt='Nervous Girl GIF' height='250px' width='250px'>",
         answered: false,
     },
 
     {
         question: "What is the most watched/influential anime in America?",
-        choices: ["Fooly Cooly","Dragon Ball Z","Cowboy Bebop","Dragon Ball GT"],
+        choices: ["Fooly Cooly","Dragon Ball Z","Cowboy Bebop","Dragon Ball"],
         answer: "Dragon Ball Z",
-        correctImage: "<h2 class='question-message'>Yea... Take that comic book dummies!</h2><img class='answerImage' src='https://media.giphy.com/media/YG90C8Fg3td16/giphy.gif' alt='placeholder' height='250px' width='250px'>",
-        incorrectImage: "<h2 class='question-message'>Vegeta doesn't seem to approve of your lack of knowlege. You may wanna back away... Perhaps a planet or two...</h2><img class='answerImage' src='https://media.giphy.com/media/84CRvhy2DJlwA/giphy.gif' alt='placeholder' height='250px' width='250px'>",
+        correctImage: "<h2 class='question-message'>Yea... Take that comic book dummies!</h2><img class='answerImage' src='https://media.giphy.com/media/YG90C8Fg3td16/giphy.gif' alt='Vegeta beats Super Heros GIF' height='250px' width='250px'>",
+        incorrectImage: "<h2 class='question-message'>Vegeta doesn't seem to approve of your lack of knowlege. You may wanna back away... Perhaps a planet or two...</h2><img class='answerImage' src='https://media.giphy.com/media/84CRvhy2DJlwA/giphy.gif' alt='Angry Vegeta GIF' height='250px' width='250px'>",
+        timeOutImage: "<h2 class='question-message'>You can't get it if you don't try.</h2><img class='answerImage' src='https://media.giphy.com/media/1S5zDKW1VFAUU/giphy.gif' alt='Goku holding back Vegeta GIF' height='250px' width='250px'>",
         answered: false,
     },
 
@@ -44,17 +47,60 @@ var questions = [
         question: "Which character feature do animators spend the most time and money on?",
         choices: ["Clothes","Hair","Eyes","Mouth"],
         answer: "Eyes",
-        correctImage: "<h2 class='question-message'></h2><img class='answerImage' src='https://media.giphy.com/media/Rx8LAWIa1rMOI/giphy.gif' alt='placeholder' height='250px' width='250px'>",
-        incorrectImage: "<h2 class='question-message'></h2><img class='answerImage' src='https://media.giphy.com/media/12lyuVXsq9z0hG/giphy.gif' height='250px' width='250px'>",
+        correctImage: "<h2 class='question-message'>Are you an anime character? Cause I could get lost in those eyes.</h2><img class='answerImage' src='https://media.giphy.com/media/Rx8LAWIa1rMOI/giphy.gif' alt='Anime Eyes' height='250px' width='250px'>",
+        incorrectImage: "<h2 class='question-message'>You gotta make your eyes sparkle!</h2><img class='answerImage' src='https://media.giphy.com/media/bs0R4pliH2UVO/giphy.gif' alt='Anime Sparkly Eyes' height='250px' width='250px'>",
+        timeOutImage: "<h2 class='question-message'>Maybe a couple of real girls will wake you up.</h2><img class='answerImage' src='https://media.giphy.com/media/12lyuVXsq9z0hG/giphy.gif' alt='Fake Anime Eyes GIF' height='250px' width='250px'>",
+        answered: false,
+    },
+
+
+    {
+        question: "What percentage of the worlds animation is anime?",
+        choices: ["%75","%98","%60","%90"],
+        answer: "%60",
+        correctImage: "<h2 class='question-message'>Wow, you got that right? You may wanna go out more...</h2><img class='answerImage' src='https://media.giphy.com/media/MJDBXJ2PtgkEg/giphy.gif' alt='No Life Anime GIF' height='250px' width='250px'>",
+        incorrectImage: "<h2 class='question-message'>Senpai will never notice you with such bad study habbits!</h2><img class='answerImage' src='https://media.giphy.com/media/9GDlxcLtNJv32/giphy.gif' alt='One Punch Study GIF' height='250px' width='250px'>",
+        timeOutImage: "<h2 class='question-message'>You're silence confuses me???</h2><img class='answerImage' src='https://media.giphy.com/media/tsyOrm9P1Oj9C/giphy.gif' alt='Not Kawaii GIF' height='250px' width='250px'>",
+        answered: false,
+    },
+
+    {
+        question: "What is the only anime to win an Academy Award?",
+        choices: ["Spirited Away","Ponyo","Princess Mononoke","Castle in the Sky"],
+        answer: "Spirited Away",
+        correctImage: "<h2 class='question-message'>Such a good movie! But wasn't it so much more depressing than you thought it was as a kid?</h2><img class='answerImage' src='https://media.giphy.com/media/3oz8xw3LmrW1XS9iQE/giphy.gif' alt='Spirited Away Train GIF' height='250px' width='250px'>",
+        incorrectImage: "<h2 class='question-message'>You probably shouldn't take the gold. But hey, I'm not gonna tell you how to live... Or Die...</h2><img class='answerImage' src='https://media.giphy.com/media/l3ZrVw8NkxIly/giphy.gif' alt='No-Face GIF' height='250px' width='250px'>",
+        timeOutImage: "<h2 class='question-message'>Don't hurt yourself now...</h2><img class='answerImage' src='https://media.giphy.com/media/12Yyb0SJv6C55C/giphy.gif' alt='Spirited Away Can't Remember GIF' height='250px' width='250px'>",
+        answered: false,
+    },
+
+    {
+        question: "The longest running animated series is _____ .",
+        choices: ["One Piece","Lupin III","The Simpsons","Sazae-san"],
+        answer: "Sazae-san",
+        correctImage: "<h2 class='question-message'>You must have some crazy computer skills, because you definitly didn't know that beforehand.</h2><img class='answerImage' src='https://media.giphy.com/media/AYqdYhpSbxAw8/giphy.gif' alt='DBZ Trunks Wii GIF' height='250px' width='250px'>",
+        incorrectImage: "<h2 class='question-message'>The show began in 1969 and has 2500+ episodes!</h2><img class='answerImage' src='https://media.giphy.com/media/3o6nUL3Td1hbHkbNqE/giphy.gif' alt='Sazae-san Suprised Face GIF' height='250px' width='250px'>",
+        timeOutImage: "<h2 class='question-message'>When the timer is under 5 seconds and you have no clue what's going on in this game.</h2><img class='answerImage' src='https://media.giphy.com/media/1iv7n5qiQ2epEC7RNV/giphy.gif' alt='Mr. Krabs Meme GIF' height='250px' width='250px'>",
+        answered: false,
+    },
+
+    {
+        question: "Anime is, in fact, an abbreviated pronunciation of Animation in Japan. It began in ____ by Japanese artists Shimokawa Oten, Jun'ichi Kouchi and Seitaro Kitayama.",
+        choices: ["1865","1917","1919","1907"],
+        answer: "1917",
+        correctImage: "<h2 class='question-message'>These hipsters don't know what real anime is. But you're clearly different.</h2><img class='answerImage' src='https://media.giphy.com/media/tjflzbCmRA5Py/giphy.gif' alt='DBZ Trunks Wii GIF' height='250px' width='250px'>",
+        incorrectImage: "<h2 class='question-message'></h2><img class='answerImage' src='https://media.giphy.com/media/tjflzbCmRA5Py/giphy.gif' alt='Sazae-san Suprised Face GIF' height='250px' width='250px'>",
+        timeOutImage: "<h2 class='question-message'></h2><img class='answerImage' src='https://media.giphy.com/media/tjflzbCmRA5Py/giphy.gif' alt='Mr. Krabs Meme GIF' height='250px' width='250px'>",
         answered: false,
     },
 
 ];
 
-// Messages to User
+// Random Bottom Messages to User
 var correctMessages = ["You may wanna get a life", "First Try", "Someone's a weeboo", "Ye You Right", "Yoku yatta! :3"];
 var incorrectMessages = ["Frowny Face", "There's always Google...", "Maybe next time", "Ganbari!", "Be the ball, throw yourself."];
-var timesUpMessages = ["Uh-Oh time's up!", "Try to answer a little quicker", "Watch the time!", "Google wouldn't load quick enough?", "You do know there's a timer right?"];
+var timesUpMessages = ["Time's up!", "Answer Faster!", "Watch the time!", "Google wouldn't load quick enough?", "You do know there's a timer right?"];
+var startUPMessages = ["Man who stand on toilet, high on pot.", "Never play leapfrog with a unicorn.", "A donut without a hole is just a Danish.", "Your toast must ALWAYS land butter-side up.", "A pipe gives a wise man time to think and a fool something to stick in his mouth."];
 
 
 // Ready Function
@@ -66,7 +112,7 @@ $(document).ready(function() {
     function nextQuestion() {
         console.log("next question");
 
-        time = 15;
+        time = 3;
         $(".answer").html("");
         $(".images").html("");
         $(".question").html(questions[currentQuestion].question);
@@ -177,9 +223,9 @@ $(document).ready(function() {
         console.log("Times Up!");
 
         timeOut++;
-        $(".bottomText").html("Hint: " + timesUpMessages[Math.floor(timesUpMessages.length * Math.random())]);
-        $(".question").html("The correct answer was " + questions[currentQuestion].answer + ".");
-        $(".images").html(questions[currentQuestion].incorrectImage);
+        $(".bottomText").html("Senpai Says: " + timesUpMessages[Math.floor(timesUpMessages.length * Math.random())]);
+        $(".question").html("The correct answer was <strong id='answer-color'><u>" + questions[currentQuestion].answer + ".</u></strong>");
+        $(".images").html(questions[currentQuestion].timeOutImage);
 
         questions[currentQuestion].answered = true;
 
@@ -192,8 +238,8 @@ $(document).ready(function() {
         console.log("Incorrect Choice");
 
         incorrectGuesses++;
-        $(".bottomText").html(incorrectMessages[Math.floor(incorrectMessages.length * Math.random())]);
-        $(".question").html("The correct answer was " + questions[currentQuestion].answer + "."); 
+        $(".bottomText").html("Senpai Says: " + incorrectMessages[Math.floor(incorrectMessages.length * Math.random())]);
+        $(".question").html("The correct answer was <strong id='answer-color'><u>" + questions[currentQuestion].answer + "</u>. </strong>"); 
         $(".images").html(questions[currentQuestion].incorrectImage); 
 
         questions[currentQuestion].answered = true;
@@ -209,8 +255,8 @@ $(document).ready(function() {
         console.log("Correct Choice");
 
         correctGuesses++;
-        $(".bottomText").html(correctMessages[Math.floor(correctMessages.length * Math.random())]);
-        $(".question").html(questions[currentQuestion].answer + " was correct!");  
+        $(".bottomText").html("Senpai Says: " + correctMessages[Math.floor(correctMessages.length * Math.random())]);
+        $(".question").html("<strong id='answer-color'><u>" + questions[currentQuestion].answer + "</u></strong> was correct!");  
         $(".images").html(questions[currentQuestion].correctImage); 
 
         questions[currentQuestion].answered = true;
@@ -220,6 +266,7 @@ $(document).ready(function() {
         decider();
     }
 
+    // $(".bottomText").html("Senpai Says: " + startUPMessages[Math.floor(Math.startUPMessages.length * Math.random())]);
     
     // Starts the Game
     function startGame() {
@@ -236,5 +283,9 @@ $(document).ready(function() {
 
     // Activates Start Button
     $("#start").click(startGame);
+
+
+    // Randomly Generates Bottom Text Every Time the Page Loads
+    $(".bottomText").html("Senpai Says: " + startUPMessages[Math.floor(startUPMessages.length * Math.random())]);
 
 });
