@@ -112,7 +112,7 @@ $(document).ready(function() {
     function nextQuestion() {
         console.log("next question");
 
-        time = 3;
+        time = 15;
         $(".answer").html("");
         $(".images").html("");
         $(".question").html(questions[currentQuestion].question);
