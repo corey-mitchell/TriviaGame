@@ -1,4 +1,4 @@
-// Initial Variables
+// Initial Variables (These are not needed it is just where I started to help me keep track of my variables)
 var time = 15;
 var currentQuestion = 0;
 var correctGuesses = 0;
@@ -78,40 +78,36 @@ var questions = [
         question: "The longest running animated series is _____ .",
         choices: ["One Piece","Lupin III","The Simpsons","Sazae-san"],
         answer: "Sazae-san",
-        correctImage: "<h2 class='question-message'>You must have some crazy computer skills, because you definitly didn't know that beforehand.</h2><img class='answerImage' src='https://media.giphy.com/media/AYqdYhpSbxAw8/giphy.gif' alt='DBZ Trunks Wii GIF' height='250px' width='250px'>",
+        correctImage: "<h2 class='question-message'>The show began in 1969 and has 2500+ episodes! (You must have some crazy computer skills, because you definitly didn't know that beforehand.)</h2><img class='answerImage' src='https://media.giphy.com/media/3o6nUL3Td1hbHkbNqE/giphy.gif' alt='Sazae-san Suprised Face GIF' height='250px' width='250px'>",
         incorrectImage: "<h2 class='question-message'>The show began in 1969 and has 2500+ episodes!</h2><img class='answerImage' src='https://media.giphy.com/media/3o6nUL3Td1hbHkbNqE/giphy.gif' alt='Sazae-san Suprised Face GIF' height='250px' width='250px'>",
         timeOutImage: "<h2 class='question-message'>When the timer is under 5 seconds and you have no clue what's going on in this game.</h2><img class='answerImage' src='https://media.giphy.com/media/1iv7n5qiQ2epEC7RNV/giphy.gif' alt='Mr. Krabs Meme GIF' height='250px' width='250px'>",
         answered: false,
     },
 
     {
-        question: "Anime is an abbreviated pronunciation of Animation in Japan. It began in ____ by Japanese artists.",
+        question: "The first anime, in ____, was a two minutes clip of a samurai testing his new sword.",
         choices: ["1865","1917","1919","1907"],
         answer: "1917",
-        correctImage: "<h2 class='question-message'>These hipsters don't know what real anime is. But you're clearly different.</h2><img class='answerImage' src='https://media.giphy.com/media/tjflzbCmRA5Py/giphy.gif' alt='DBZ Trunks Wii GIF' height='250px' width='250px'>",
-        incorrectImage: "<h2 class='question-message'>The original artists were; Shimokawa Oten, Jun'ichi Kouchi and Seitaro Kitayama</h2><img class='answerImage' src='https://media.giphy.com/media/tjflzbCmRA5Py/giphy.gif' alt='Sazae-san Suprised Face GIF' height='250px' width='250px'>",
-        timeOutImage: "<h2 class='question-message'>The original artists were; Shimokawa Oten, Jun'ichi Kouchi and Seitaro Kitayama</h2><img class='answerImage' src='https://media.giphy.com/media/tjflzbCmRA5Py/giphy.gif' alt='Mr. Krabs Meme GIF' height='250px' width='250px'>",
+        correctImage: "<h2 class='question-message'>The original artists were; Shimokawa Oten, Jun'ichi Kouchi and Seitaro Kitayama.(This is NOT that anime)</h2><img class='answerImage' src='https://media.giphy.com/media/D9kRCocIGZ9f2/giphy.gif' alt='Chibi GIF' height='250px' width='250px'>",
+        incorrectImage: "<h2 class='question-message'>The original artists were; Shimokawa Oten, Jun'ichi Kouchi and Seitaro Kitayama.(This is NOT that anime)</h2><img class='answerImage' src='https://media.giphy.com/media/D9kRCocIGZ9f2/giphy.gif' alt='Chibi GIF' height='250px' width='250px'>",
+        timeOutImage: "<h2 class='question-message'>The original artists were; Shimokawa Oten, Jun'ichi Kouchi and Seitaro Kitayama.(This is NOT that anime)</h2><img class='answerImage' src='https://media.giphy.com/media/D9kRCocIGZ9f2/giphy.gif' alt='Chibi GIF' height='250px' width='250px'>",
         answered: false,
     },
 
 ];
 
-// Random Bottom Messages to User
-var correctMessages = ["You may wanna get a life", "First Try", "Someone's a weeboo", "Ye You Right", "Yoku yatta! :3"];
-var incorrectMessages = ["Frowny Face", "There's always Google...", "Maybe next time", "Ganbari!", "Be the ball, throw yourself."];
+// Random Bottom Messages to User (Senpai Says)
+var correctMessages = ["You may wanna get a life.", "First Try!", "Someone's a weeboo!", "Ye You Right.", "Yoku yatta! :3"];
+var incorrectMessages = ["Frowny Face...", "There's always Google...", "Maybe next time...", "Ganbari!", "Be the ball, throw yourself."];
 var timesUpMessages = ["Time's up!", "Answer Faster!", "Watch the time!", "Google wouldn't load quick enough?", "You do know there's a timer right?"];
-var startUPMessages = ["Man who stand on toilet, high on pot.", "Never play leapfrog with a unicorn.", "A donut without a hole is just a Danish.", "Your toast must ALWAYS land butter-side up.", "A pipe gives a wise man time to think and a fool something to stick in his mouth."];
-
-
-// Just a heads up, if you're a person who prefers to read things as they happen, then you may want to start from the bottom and read up.
-// I don't really know how it happened, but I sort of wrote the code backwards
+var startUPMessages = ["Man who stand on toilet, high on pot.", "Never play leapfrog with a unicorn.", "A donut without a hole is just a Danish.", "Your toast must ALWAYS land butter-side up!", "I don't make the rules, I just think em up and write em down.", "I've said it before and I'll say it again. I've said it before."];
 
 
 // Ready Function
 $(document).ready(function() {
     console.log("ready")
 
-    // Randomly Generates Bottom Text Every Time the Page Loads
+    // Randomly Generates Bottom Text (Senpai Says) Every Time the Page Loads
     $(".senpaiSays").html("Senpai Says: " + startUPMessages[Math.floor(startUPMessages.length * Math.random())]);
 
 
@@ -257,7 +253,29 @@ $(document).ready(function() {
         <h2 class='results'>Answered Incorrectly: ${incorrectGuesses}</h2>
         <h2 class='results'>Time Outs: ${timeOut}</h2>`)
         $(".resultButton").html("<button id='restart-button'>Restart</button>")
-        $(".senpaiSays").html("");
+
+        // if and else if for different score messages
+        //(There is probably an easier way to do this with a Switch/case, but I'm not very good with Switch/case yet so forgive me)
+        if (correctGuesses > incorrectGuesses && correctGuesses > timeOut) {
+            $(".senpaiSays").html("*Senpai Pats Head* You have been noticed!");
+        }
+
+        else if (incorrectGuesses > correctGuesses && incorrectGuesses > timeOut) {
+            $(".senpaiSays").html("*Senpai beats you with walking stick*");
+        }
+
+        else if (timeOut > correctGuesses && timeOut > incorrectGuesses) {
+            $(".senpaiSays").html("Senpai Says: How dare you go AFK at such a crucial moment!");
+        }
+
+        else if (correctGuesses === incorrectGuesses) {
+            $(".senpaiSays").html("Senpai Says: Someone has been too lax in their studies.");
+        }
+
+        else {
+            $(".senpaiSays").html("Senpai Says: Hmm these are some pretty mixed results. Perhaps another try?");
+        }
+
     }
 
     // Activates Restart Button
@@ -281,3 +299,7 @@ $(document).ready(function() {
     }
     
 });
+
+// I didn't have enough time to make more questions, so I hope that 8 will do. But I can add more questions to the array for more content with ease.
+
+// I hope you enjoyed this cancerous content that I made you sit through  ^__^
