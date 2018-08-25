@@ -1,11 +1,3 @@
-// Initial Variables (These are not needed it is just where I started to help me keep track of my variables)
-var time = 15;
-var currentQuestion = 0;
-var correctGuesses = 0;
-var incorrectGuesses = 0;
-var timeOut = 0;
-
-
 // Questions and Choices
 var questions = [
     {
